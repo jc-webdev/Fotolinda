@@ -1,0 +1,22 @@
+{% if menu %}
+
+	<div id="header" class="Header--Static">
+		<div class="subWrap">
+			<div class="nav">
+				<button type="button" id="mobileMenuButton" aria-label="menu" class="btGnb">
+					{% for i in 0..2 %}
+						<span></span>
+					{% endfor %}
+				</button>
+				<ul id="gnb" class="gnb _gnb">
+					{% for item in menu.items %}
+						<li>
+							<a href="{{item.link}}" class="urlAdjustTarget">{{item.title}}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+{% endif %}

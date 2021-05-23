@@ -1,0 +1,16 @@
+// COLORS
+
+$mainColor: whitesmoke;
+
+@function mainYellow($opacity) {
+    @return hsla(40, 100%, 49%, $opacity)
+}
+
+;
+
+// FONTS 
+$times: "font75220",
+sans-serif;
+
+$sans: 'PT Sans',
+sans-serif;

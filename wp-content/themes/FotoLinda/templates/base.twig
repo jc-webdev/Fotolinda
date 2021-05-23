@@ -1,0 +1,55 @@
+{% block html_head_container %}
+
+	{% include 'html-header.twig' %}
+	{% block head %}{% endblock %}
+</head>{% endblock %}<body class="main">
+
+{% include "menu.twig" %}
+<main>
+{% block content %}
+	Sorry, no content
+{% endblock %}
+</main>
+
+
+{% block footer %}
+	<footer id="kontakt">
+		{% include 'footer.twig' %}
+	</footer>
+	{{ function('wp_footer') }}
+{% endblock %}
+
+<script src="{{site.theme.link}}/static/yall.min.js"></script>
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+        yall({
+          observeChanges: true,
+          events: {
+            load: function (event) {
+              if (!event.target.classList.contains("lazy") && event.target.nodeName == "IMG") {
+                event.target.classList.add("yall-loaded");
+              }
+            },
+            error: {
+              listener: function (event) {
+                if (!event.target.classList.contains("lazy") && event.target.nodeName == "IMG") {
+                  event.target.classList.add("yall-error");
+                  event.target.nextElementSibling.classList.add("visible");
+                }
+              },
+              options: {
+                once: true
+              }
+            }
+          }
+        });
+
+      });
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww==" crossorigin="anonymous"></script>
+<script src="{{site.theme.link}}/static/fslightbox.js" async defer></script>
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/macy/2.5.1/macy.min.js" integrity="sha512-/o/3HSUNsIEsxRpMb5LdGO+algy6JHTf3tMn2VpWKfVexrEAepEzsuJPA51tJVdC9kCHsN5+Z4GJ35pcldgsGw==" crossorigin="anonymous"></script> #}
+<script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+<script src="{{site.theme.link}}/static/script.js"></script>
+</body></html>

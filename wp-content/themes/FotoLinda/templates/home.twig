@@ -1,0 +1,173 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<section class="banner-home" data-type="background" data-speed="4" style="background-image:url({{ home.get_field('homeBanner').image }})">
+		<div class="wrapper">
+			<h1>{{home.get_field('homeBanner').headline}}</h1>
+			<h2>{{home.get_field('homeBanner').bottomline}}</h2>		
+		</div>
+		<div class="arrow">
+			<a href="#onas">
+				{% include "./static/images/arrowstar.svg" %}		
+			</a>
+		</div>
+	</section>
+	<section class="description" id="onas">
+		<div class="wrapper">
+			<div class="top">
+				<div class="headline">
+					<h2>{{home.get_field('onas').headline}}</h2>					
+				</div>
+				<div class="desc">
+					<p>{{home.get_field('onas').desc}}</p>					
+				</div>
+			</div>
+			<div class="bottom">
+			<div class="swiper-container swiper-container-oferta">
+				<div class="swiper-wrapper">
+					{% for item in oferta %}
+						<div class="swiper-slide swiper-slide-oferta">
+							<img class="lazy"  data-src="{{item.thumbnail.src|resize(640)}}" alt="{{item.title}}">
+							<div class="card-hover-box">
+								<div class="wrapper">
+									<div class="text">
+										{# {{item|print_r}} #}
+										<a href="{{item.guid}}">
+											<p>Zobacz galerię</p>
+											<p>{{item.title}}</p>
+										</a>
+									</div>
+
+									<div class="frame"></div>
+									<div class="frame"></div>
+									<div class="frame"></div>
+									<div class="frame"></div>
+								</div>
+							</div>				
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+				
+
+
+			</div>
+		</div>
+		<div class="arrow">
+			<a href="#uslugi">
+				{% include "./static/images/arrowstar.svg" %}
+			</a>	
+		</div>
+	</section>
+	<section class="oferta" id="uslugi">
+		<div class="wrapper">
+			<div class="top">
+				<div class="headline">
+					<h2>{{home.get_field('oferta').headline}}</h2>					
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="left">
+					<div class="left-wrapp">
+						<div class="desc-main">
+								<ul>
+									{% for item in home.get_field('oferta').uslugi %}
+										<li>{{item.nazwa}}</li>
+									{% endfor %}
+								</ul>
+						</div>
+						<div class="extra-desc">
+								<p>Specjalizujemy się również w:</p>
+								<ul>
+									{% for item in home.get_field('oferta').dodatkowe_uslugi %}
+										<li>{{item.nazwa}}</li>
+									{% endfor %}
+								</ul>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<div class="mini-gallery">
+						<div class="wrapper">
+							<div class="top">
+								{% for item in home.get_field('oferta').zdjecia_sekcji %}
+									{# {{item|print_r}} #}
+									{% if loop.index == 1 %}
+										<div class="left">
+											<img class="lazy"  data-src="{{item.url|resize(640)}}" alt="{{itme.name}}">
+										</div>
+									{% endif %}
+								{% endfor %}
+								{% for item in home.get_field('oferta').zdjecia_sekcji %}
+									{% if loop.index == 2 %}								
+										<div class="right">
+											<img class="lazy"  data-src="{{item.url|resize(640)}}" alt="{{itme.name}}">
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<div class="bottom">
+								{% for item in home.get_field('oferta').zdjecia_sekcji %}
+									{% if loop.index == 3 %}
+										<div class="left">
+											<img class="lazy"  data-src="{{item.url|resize(640)}}" alt="{{itme.name}}">
+										</div>
+									{% endif %}
+								{% endfor %}
+								{% for item in home.get_field('oferta').zdjecia_sekcji %}
+									{% if loop.index == 4 %}
+										<div class="right">
+											<img class="lazy"  data-src="{{item.url|resize(640)}}" alt="{{itme.name}}">
+										</div>
+									{% endif %}
+								{% endfor %}								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="arrow">
+			<a href="#portfolio">
+				{% include "./static/images/arrowstar.svg" %}
+			</a>	
+		</div>
+	</section>
+	<section class="galeria-home" id="portfolio">
+		<div class="top" data-type="background" data-speed="4" style="background-image:url({{home.get_field('portfolio').naglowek.zdjecie_naglowka}})">
+			<h2>{{home.get_field('portfolio').naglowek.nazwa_glowna}}</h2>
+			<h5>{{home.get_field('portfolio').naglowek.tytul_mniejszy}}</h5>
+		</div>
+		<div class="bottom">
+			<div id="macy-container">
+				{% for item in home.get_field('portfolio').galeria %}
+					{% if loop.index == 1 %} 
+						<div class="demo" macy-complete="1">
+							<a data-fslightbox href="{{item.url}}">
+								<img  data-src="{{item.url|resize(640)}}" alt="{{item.name}}" class="demo-image lazy">
+							</a>
+						</div>
+					 {% else %}
+						<div class="demo">
+							<a data-fslightbox href="{{item.url}}">
+								<img  data-src="{{item.url|resize(640)}}" alt="{{item.name}}" class="demo-image lazy">
+							</a>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<section class="last-section" data-type="background" data-speed="4" style="background-image:url({{home.get_field('notka_dolna').tlo}})">
+	<div class="wrapper">
+		<div class="text">
+				{{home.get_field('notka_dolna').tekst}}
+		</div>
+	</div>
+	<div class="arrow"> 
+			<a href="#kontakt">
+				{% include "./static/images/arrowstar.svg" %}
+			</a>	
+		</div>
+	</section>
+{% endblock %}

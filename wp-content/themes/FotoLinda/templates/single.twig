@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="back-home">
+    <a href="{{home_page}}"> 
+        <span>
+            {% include "./static/images/arrowstar.svg" %}
+        </span>
+        Strona Główna
+    </a>
+</div>
+<section class="top-single">
+    <div class="headline">
+        <h2>galeria</h2>					
+    </div>
+</section>
+<section class="posts-nav">
+    <div class="swiper-container swiper-container-postsNav">
+        <div class="swiper-wrapper">
+            {% for item in oferta %}
+                <div class="swiper-slide swiper-slideElement {% if item.title == post.title %}active{% endif %}">
+                  <a href="{{item.guid}}">
+                    <p class="name">{{item.title}}</p>
+                  </a>  
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="gallery-single">
+    <div id="macy-container-single">
+        {% for item in post.get_field('galeria') %}
+            {% if loop.index == 1 %}
+                <div class="demo" macy-complete="1">
+                    <a data-fslightbox href="{{item.url}}">
+                        <img src="{{item.url}}" alt="{{item.name}}" class="demo-image">
+                    </a>
+                </div>
+            {% else %}
+                <div class="demo">
+                    <a data-fslightbox href="{{item.url}}">
+                        <img src="{{item.url}}" alt="{{item.name}}" class="demo-image">
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+
+
+{% endblock %}
